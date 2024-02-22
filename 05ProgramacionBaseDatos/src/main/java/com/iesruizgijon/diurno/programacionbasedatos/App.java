@@ -18,6 +18,8 @@ public class App {
                 
         bd.Conecta();
         
+        bd.describe("orders");
+        
         bd.Desconecta();
     }
 }
