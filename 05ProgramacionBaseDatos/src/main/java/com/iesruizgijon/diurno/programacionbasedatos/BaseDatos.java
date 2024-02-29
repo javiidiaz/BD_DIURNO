@@ -123,4 +123,35 @@ public class BaseDatos {
 
     }
     
+    
+    public void getDataBaseNames(){
+        
+        try {
+
+                  Statement stmt = conexion.createStatement();
+
+                //Retrieving the data
+
+                ResultSet rs = stmt.executeQuery("Show Databases");
+
+                System.out.println("List of databases: ");
+
+                while(rs.next()) {
+
+                   System.out.print(rs.getString(1));
+
+                   System.out.println();
+
+                }
+
+        } catch (SQLException ex) {
+
+            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+    }
+    
 }
+
+
