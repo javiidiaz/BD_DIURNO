@@ -4,6 +4,8 @@
  */
 package com.mycompany.client_mysql;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author javi
@@ -48,6 +50,11 @@ public class Principal extends javax.swing.JFrame {
                 BotonMouseClicked(evt);
             }
         });
+        Boton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -56,9 +63,9 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(Boton, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -71,7 +78,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jScrollPane1))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(337, 337, 337)
+                .addGap(348, 348, 348)
                 .addComponent(Boton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -81,7 +88,28 @@ public class Principal extends javax.swing.JFrame {
 
     private void BotonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BotonMouseClicked
         // TODO add your handling code here:
+        ArrayList<String> tabla=null;
+        
+        BaseDatos bd=new BaseDatos("root", "123qweASD_", "northwind");
+        
+        bd.Conecta();
+        
+        tabla=bd.Consulta(Entrada.getText());
+        
+        String contenido="";
+                
+        for (String elemento : tabla) {
+            elemento=elemento+contenido+"\n";
+        }
+        
+        Salida.setText(contenido);
+        
+        bd.Desconecta();
     }//GEN-LAST:event_BotonMouseClicked
+
+    private void BotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonActionPerformed
 
     /**
      * @param args the command line arguments
